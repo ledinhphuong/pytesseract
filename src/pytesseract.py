@@ -237,6 +237,8 @@ def run_tesseract(
     if extension and extension not in {'box', 'osd', 'tsv', 'xml'}:
         cmd_args.append(extension)
 
+    print('Run: {}'.format(cmd_args))
+
     try:
         proc = subprocess.Popen(cmd_args, **subprocess_args())
     except OSError as e:
@@ -270,6 +272,7 @@ def run_and_get_output(
             'timeout': timeout,
         }
 
+        print(kwargs)
         run_tesseract(**kwargs)
         filename = kwargs['output_filename_base'] + extsep + extension
         with open(filename, 'rb') as output_file:
